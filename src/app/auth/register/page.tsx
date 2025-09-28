@@ -158,7 +158,7 @@ export default function RegisterPage() {
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700">
           <div className="mb-4 text-xs bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-md p-3 text-purple-700 dark:text-purple-300">
             <p className="font-medium mb-1">Judge / Demo Accounts</p>
-            <p>Use the predefined emails with password <span className="font-semibold">password</span> or click "Fill Demo Data" after selecting a role.</p>
+            <p>Use the predefined emails with password <span className="font-semibold">password</span> or click &quot;Fill Demo Data&quot; after selecting a role.</p>
             <ul className="mt-1 grid grid-cols-2 gap-x-4 gap-y-1 font-mono text-[10px]">
               <li>student@test.com</li>
               <li>faculty@test.com</li>

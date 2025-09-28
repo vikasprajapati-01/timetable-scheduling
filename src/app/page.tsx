@@ -334,7 +334,7 @@ export default function LandingPage() {
                       ))}
                     </div>
                     <CardDescription className="text-base italic">
-                      "{testimonial.content}"
+                      &quot;{testimonial.content}&quot;
                     </CardDescription>
                   </CardHeader>
                   <CardContent>

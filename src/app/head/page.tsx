@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -526,8 +527,10 @@ export default function HeadDashboard() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <Button className="w-full" variant="outline">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Generate Timetable
+                    <Link href={"/demo"}>
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Generate Timetable
+                    </Link>
                   </Button>
                   <Button className="w-full" variant="outline">
                     <Users className="w-4 h-4 mr-2" />
