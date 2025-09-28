@@ -75,7 +75,7 @@ export default function StudentDashboard() {
   }
 
   const upcomingClass = todaysClasses.find(cls => cls.time > new Date().toTimeString().slice(0, 5))
-  const unreadNotifications = notifications.filter(n => !n.read)
+  const unreadNotifications = notifications.filter((n: Notification) => !n.read)
   const userSubjects = subjects.filter(subject => subject.department === session.user.department)
 
   return (
@@ -321,7 +321,7 @@ export default function StudentDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {userSubjects.slice(0, 5).map((subject, index) => (
+                    {userSubjects.slice(0, 5).map((subject) => (
                       <div key={subject.id} className="flex items-center justify-between p-3 rounded-lg bg-muted/30">
                         <div>
                           <p className="font-medium text-sm">{subject.name}</p>

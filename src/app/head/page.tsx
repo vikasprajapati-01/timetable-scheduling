@@ -18,14 +18,10 @@ import {
   GraduationCap,
   BarChart3,
   FileCheck,
-  UserCheck,
   Settings,
   Download,
-  Filter,
   Search,
-  Eye,
-  Edit,
-  Trash2
+  Eye
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -35,7 +31,7 @@ import { Navbar } from "@/components/ui/navbar"
 import { LoadingPage } from "@/components/ui/loading"
 import { Modal } from "@/components/ui/modal"
 import { mockApi } from "@/data/mockData"
-import type { TimeSlot, Subject, Faculty } from "@/types"
+import type { Subject, Faculty } from "@/types"
 
 interface DepartmentStats {
   totalFaculty: number
@@ -306,7 +302,7 @@ export default function HeadDashboard() {
           transition={{ delay: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
         >
-          {dashboardStats.map((stat, index) => {
+          {dashboardStats.map((stat) => {
             const Icon = stat.icon
             return (
               <Card key={stat.title} className="hover:shadow-lg transition-shadow">
@@ -368,7 +364,7 @@ export default function HeadDashboard() {
                     </div>
                     <select
                       value={filterStatus}
-                      onChange={(e) => setFilterStatus(e.target.value as any)}
+                      onChange={(e) => setFilterStatus(e.target.value as "pending" | "approved" | "rejected" | "all")}
                       className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600"
                     >
                       <option value="all">All Status</option>

@@ -2,13 +2,11 @@
 
 import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Calendar, RefreshCw, Clock, Users, BookOpen, Settings, ChevronDown, ChevronUp } from "lucide-react"
+import { Calendar, RefreshCw, Settings } from "lucide-react"
 import { motion } from "framer-motion"
-import Link from "next/link"
 
 interface DemoSlot {
   day: string
@@ -90,7 +88,7 @@ export default function DemoTimetablePage() {
     setGeneratedAt(new Date())
   }
 
-  useEffect(() => { regenerate() }, [])
+  useEffect(() => { regenerate() }, [regenerate])
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -126,7 +124,7 @@ export default function DemoTimetablePage() {
                   <Input type="number" min={1} value={times.length} onChange={e => {
                     const desired = parseInt(e.target.value||'0');
                     if (desired>0) {
-                      let list = [...times];
+                      const list = [...times];
                       while(list.length < desired) list.push(`X${(list.length+1).toString().padStart(2,'0')}:00-${(list.length+2).toString().padStart(2,'0')}:00`)
                       setTimes(list.slice(0,desired))
                     }

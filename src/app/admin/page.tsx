@@ -288,7 +288,7 @@ export default function AdminDashboard() {
           transition={{ delay: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
         >
-          {mainStats.map((stat, index) => {
+          {mainStats.map((stat) => {
             const Icon = stat.icon
             const TrendIcon = stat.trend === "up" ? TrendingUp : stat.trend === "down" ? TrendingDown : Target
             return (
@@ -477,9 +477,9 @@ export default function AdminDashboard() {
                       { type: "warning", message: "High CPU usage detected on server-02", time: "3 hours ago", status: "warning" },
                       { type: "update", message: "Timetable generator updated to v2.1.0", time: "1 day ago", status: "info" },
                       { type: "user", message: "Bulk student enrollment completed", time: "2 days ago", status: "success" }
-                    ].map((activity, index) => (
+                    ].map((activity, i) => (
                       <div
-                        key={index}
+                        key={i}
                         className="flex items-center gap-4 p-3 border border-gray-200 dark:border-gray-700 rounded-lg"
                       >
                         <div className={`w-2 h-2 rounded-full ${

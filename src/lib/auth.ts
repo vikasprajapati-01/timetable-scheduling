@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import type { UserRole } from "@/types"
-import type { Session } from "next-auth"
+import type { Session, User } from "next-auth"
 import type { JWT } from "next-auth/jwt"
 
 // Mock user database
@@ -121,7 +121,7 @@ export const authConfig = {
     })
   ],
   callbacks: {
-    async jwt({ token, user }: { token: JWT; user?: any }) {
+  async jwt({ token, user }: { token: JWT; user?: User }) {
       if (user) {
         token.role = user.role;
         token.department = user.department;

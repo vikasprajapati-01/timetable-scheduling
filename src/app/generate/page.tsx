@@ -6,38 +6,23 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { 
   Calendar, 
-  Clock, 
-  Users, 
-  BookOpen, 
-  MapPin,
+  Clock,
   AlertTriangle,
   CheckCircle,
   Download,
-  Upload,
   RefreshCw,
   Play,
-  Pause,
   Settings,
-  FileText,
-  ChevronRight,
-  ChevronDown,
-  X,
-  Plus,
   Edit,
-  Trash2,
   Eye,
-  Filter,
-  Search
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { Navbar } from "@/components/ui/navbar"
 import { LoadingPage } from "@/components/ui/loading"
 import { Modal } from "@/components/ui/modal"
-import { mockApi } from "@/data/mockData"
 import type { Subject, Faculty, TimeSlot } from "@/types"
 
 interface GenerationConfig {
@@ -118,66 +103,52 @@ export default function TimetableGenerator() {
   }, [session, status, router])
 
   const loadData = async () => {
-    try {
-      const [subjectsData, facultyData] = await Promise.all([
-        mockApi.getSubjects(),
-        mockApi.getFaculty()
-      ])
-      
-      setSubjects(subjectsData)
-      setFaculty(facultyData)
-      
-      // Initialize generation steps
-      const steps: GenerationStep[] = [
-        {
-          id: 1,
-          title: "Initialize Configuration",
-          status: "pending",
-          description: "Setting up generation parameters and constraints"
-        },
-        {
-          id: 2,
-          title: "Load Data",
-          status: "pending",
-          description: "Loading subjects, faculty, and resource information"
-        },
-        {
-          id: 3,
-          title: "Generate Base Schedule",
-          status: "pending",
-          description: "Creating initial timetable structure"
-        },
-        {
-          id: 4,
-          title: "Assign Faculty",
-          status: "pending",
-          description: "Mapping faculty to subjects and time slots"
-        },
-        {
-          id: 5,
-          title: "Resolve Conflicts",
-          status: "pending",
-          description: "Identifying and resolving scheduling conflicts"
-        },
-        {
-          id: 6,
-          title: "Optimize Schedule",
-          status: "pending",
-          description: "Applying optimization algorithms"
-        },
-        {
-          id: 7,
-          title: "Validate Results",
-          status: "pending",
-          description: "Final validation and quality checks"
-        }
-      ]
-      setGenerationSteps(steps)
-      setLoading(false)
-    } catch (error) {
-      console.error("Error loading data:", error)
-      setLoading(false)
-    }
+    const steps: GenerationStep[] = [
+      {
+        id: 2,
+        title: "Load Data",
+        status: "pending",
+        description: "Loading subjects, faculty, and resource information",
+        progress: 0
+      },
+      {
+        id: 3,
+        title: "Generate Base Schedule",
+        status: "pending",
+        description: "Creating initial timetable structure",
+        progress: 0
+      },
+      {
+        id: 4,
+        title: "Assign Faculty",
+        status: "pending",
+        description: "Mapping faculty to subjects and time slots",
+        progress: 0
+      },
+      {
+        id: 5,
+        title: "Resolve Conflicts",
+        status: "pending",
+        description: "Identifying and resolving scheduling conflicts",
+        progress: 0
+      },
+      {
+        id: 6,
+        title: "Optimize Schedule",
+        status: "pending",
+        description: "Applying optimization algorithms",
+        progress: 0
+      },
+      {
+        id: 7,
+        title: "Validate Results",
+        status: "pending",
+        description: "Final validation and quality checks",
+        progress: 0
+      }
+    ];
+    setGenerationSteps(steps);
+    setLoading(false);
   }
 
   const startGeneration = async () => {
@@ -279,18 +250,18 @@ export default function TimetableGenerator() {
     ]
   }
 
-  const handleConfigChange = (field: string, value: any) => {
+  const handleConfigChange = (field: string, value: unknown) => {
     if (field.includes('.')) {
       const [parent, child] = field.split('.')
-      setConfig(prev => ({
+      setConfig((prev: GenerationConfig) => ({
         ...prev,
         [parent]: {
-          ...(prev as any)[parent],
+          ...(prev[parent as keyof GenerationConfig] as object),
           [child]: value
         }
       }))
     } else {
-      setConfig(prev => ({
+      setConfig((prev: GenerationConfig) => ({
         ...prev,
         [field]: value
       }))
@@ -733,7 +704,7 @@ export default function TimetableGenerator() {
                         No Timetable Generated
                       </h3>
                       <p className="text-gray-600 dark:text-gray-400 mb-4">
-                        Configure your parameters and click "Generate Timetable" to create a schedule
+                        Configure your parameters and click &quot;Generate Timetable&quot; to create a schedule
                       </p>
                       <Button onClick={startGeneration}>
                         <Play className="w-4 h-4 mr-2" />

@@ -126,7 +126,7 @@ export function TodaySchedule({ slots }: TodayScheduleProps) {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Clock className="w-5 h-5" />
-          Today's Schedule
+          Today&apos;s Schedule
           <Badge variant="secondary">{today}</Badge>
         </CardTitle>
       </CardHeader>

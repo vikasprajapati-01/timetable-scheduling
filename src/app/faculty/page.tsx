@@ -12,9 +12,7 @@ import {
   BarChart3,
   TrendingUp,
   CheckCircle,
-  AlertTriangle,
   User,
-  MapPin,
   Coffee,
   Target
 } from "lucide-react"
@@ -45,17 +43,14 @@ export default function FacultyDashboard() {
 
   useEffect(() => {
     if (status === "loading") return
-    
     if (!session) {
       router.push("/auth/login")
       return
     }
-
     if (session.user.role !== "faculty") {
       router.push("/dashboard")
       return
     }
-
     // Load faculty-specific data
     const loadData = async () => {
       try {
@@ -117,7 +112,7 @@ export default function FacultyDashboard() {
   // Calculate stats
   const today = new Date().toLocaleDateString('en-US', { weekday: 'long' })
   const todayClasses = timetableSlots.filter(slot => slot.day === today).length
-  const totalWeeklyClasses = timetableSlots.length
+  // const totalWeeklyClasses = timetableSlots.length
   const totalStudents = 180 // Mock total students across all classes
   const utilizationRate = workloadData?.utilizationRate || 0
 
