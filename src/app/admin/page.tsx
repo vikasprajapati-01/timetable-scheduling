@@ -8,38 +8,31 @@ import {
   Users, 
   Building, 
   BookOpen, 
-  BarChart3,
   TrendingUp,
   TrendingDown,
-  AlertTriangle,
-  CheckCircle,
-  Calendar,
-  Settings,
-  Database,
-  Shield,
-  UserCheck,
-  Clock,
   MapPin,
   GraduationCap,
   Award,
   Target,
   Activity,
-  Download,
-  Upload,
+  Database,
+  Shield,
   RefreshCw,
+  Download,
+  BarChart3,
+  Clock,
+  Settings,
   Bell,
-  Eye,
-  Edit,
-  Trash2,
-  Plus
+  AlertTriangle,
+  CheckCircle,
+  UserCheck
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Navbar } from "@/components/ui/navbar"
 import { LoadingPage } from "@/components/ui/loading"
-import { Modal } from "@/components/ui/modal"
-import { mockApi } from "@/data/mockData"
+
 
 interface SystemStats {
   totalUsers: number
@@ -75,7 +68,7 @@ export default function AdminDashboard() {
   const [systemHealth, setSystemHealth] = useState<SystemHealth | null>(null)
   const [metrics, setMetrics] = useState<InstitutionMetrics | null>(null)
   const [loading, setLoading] = useState(true)
-  const [selectedMetric, setSelectedMetric] = useState<string | null>(null)
+  // const [selectedMetric, setSelectedMetric] = useState<string | null>(null)
 
   useEffect(() => {
     if (status === "loading") return
@@ -143,7 +136,7 @@ export default function AdminDashboard() {
     return null
   }
 
-  const user = session.user
+  // const user = session.user
   
   const mainStats = [
     {
