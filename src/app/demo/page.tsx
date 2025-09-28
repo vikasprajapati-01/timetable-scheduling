@@ -88,7 +88,11 @@ export default function DemoTimetablePage() {
     setGeneratedAt(new Date())
   }
 
-  useEffect(() => { regenerate() }, [regenerate])
+  useEffect(() => {
+    const timetable = generateDemoTimetable({ days, times, subjects: parseSubjects(), rooms: parseRooms() })
+    setSlots(timetable)
+    setGeneratedAt(new Date())
+  }, [])
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
