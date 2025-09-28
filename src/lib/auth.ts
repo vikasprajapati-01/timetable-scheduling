@@ -1,6 +1,8 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import type { UserRole } from "@/types"
+import type { Session } from "next-auth"
+import type { JWT } from "next-auth/jwt"
 
 // Mock user database
 const users = [
@@ -119,28 +121,28 @@ export const authConfig = {
     })
   ],
   callbacks: {
-    async jwt({ token, user }: { token: any; user: any }) {
+    async jwt({ token, user }: { token: JWT; user?: any }) {
       if (user) {
-        token.role = user.role
-        token.department = user.department
-        token.year = user.year
-        token.section = user.section
-        token.employeeId = user.employeeId
-        token.subjects = user.subjects
+        token.role = user.role;
+        token.department = user.department;
+        token.year = user.year;
+        token.section = user.section;
+        token.employeeId = user.employeeId;
+        token.subjects = user.subjects;
       }
-      return token
+      return token;
     },
-    async session({ session, token }: { session: any; token: any }) {
-      if (token) {
-        session.user.id = token.sub as string
-        session.user.role = token.role
-        session.user.department = token.department
-        session.user.year = token.year
-        session.user.section = token.section
-        session.user.employeeId = token.employeeId
-        session.user.subjects = token.subjects
+    async session({ session, token }: { session: Session; token: JWT }) {
+      if (session.user) {
+        session.user.id = token.sub as string;
+        session.user.role = token.role;
+        session.user.department = token.department;
+        session.user.year = token.year;
+        session.user.section = token.section;
+        session.user.employeeId = token.employeeId;
+        session.user.subjects = token.subjects;
       }
-      return session
+      return session;
     }
   },
   pages: {
