@@ -75,7 +75,7 @@ export default function LoginPage() {
   const demoCredentials = {
     student: { email: "student@test.com", password: "password" },
     faculty: { email: "faculty@test.com", password: "password" },
-    head: { email: "head@test.com", password: "password" },
+    head: { email: "principal@test.com", password: "password" },
     admin: { email: "admin@test.com", password: "password" }
   }
 
